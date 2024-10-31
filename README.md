@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 # NotesApp
-NotesApp is a web application designed for creating, editing, and managing personal notes.
+NotesApp is a web application designed for creating, editing, and managing notes.
 =======
 # Getting Started with Create React App
 
