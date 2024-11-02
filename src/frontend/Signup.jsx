@@ -23,7 +23,7 @@ const Signup = () => {
             if (isLogin) {
                 // Redirect to the notes app after login
                 localStorage.setItem('token', response.data.token); // Store token on login
-                toast.success('Login successful!'); // Show success toast
+                toast.success(`Logged in as ${username}!`); // Show success toast
                 navigate('/notes'); // Change this path to your notes app route
             } else {
                 // If signing up, toggle to the login form

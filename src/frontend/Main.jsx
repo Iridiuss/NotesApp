@@ -133,6 +133,30 @@ const Main = ({ token }) => {
         }
     };
 
+    // const handleLikeNote = async (id) => {
+    //     if (likedNotes.has(id)) {
+    //         // Unlike the note if already liked
+    //         await axios.put(`http://localhost:5000/notes/${id}/unlike`, {}, {
+    //             headers: { Authorization: `Bearer ${token}` },
+    //         });
+    //         setLikedNotes(prev => {
+    //             const updated = new Set(prev);
+    //             updated.delete(id);
+    //             return updated;
+    //         });
+    //     } else {
+    //         // Like the note if not already liked
+    //         await axios.put(`http://localhost:5000/notes/${id}/like`, {}, {
+    //             headers: { Authorization: `Bearer ${token}` },
+    //         });
+    //         setLikedNotes(prev => new Set(prev).add(id));
+    //     }
+    //     const response = await axios.get(`http://localhost:5000/notes/${id}`, {
+    //         headers: { Authorization: `Bearer ${token}` },
+    //     });
+    //     setNotes(notes.map(note => note._id === id ? response.data : note));
+    // };
+
     return (
         <Container maxWidth="md" className="app-container">
             <Box display="flex" justifyContent="space-between" alignItems="center" mt={4} mb={2}>
