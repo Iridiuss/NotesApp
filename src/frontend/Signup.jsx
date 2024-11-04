@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Container, TextField, Button, Typography, Box } from '@mui/material';
+import { IconButton, InputAdornment } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { toast } from 'react-toastify'; // Import toast
@@ -10,6 +12,7 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [isLogin, setIsLogin] = useState(false); // State to toggle between signup and login
     const navigate = useNavigate(); // Initialize navigate
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,10 +27,14 @@ const Signup = () => {
                 // Redirect to the notes app after login
                 localStorage.setItem('token', response.data.token); // Store token on login
                 toast.success(`Logged in as ${username}!`); // Show success toast
+                setUsername(''); // Clear username
+                setPassword(''); // Clear password
                 navigate('/notes'); // Change this path to your notes app route
             } else {
                 // If signing up, toggle to the login form
                 setIsLogin(true);
+                setUsername(''); // Clear username
+                setPassword(''); // Clear password
                 toast.success('Registration successful! You can now log in.'); // Show success toast
             }
         } catch (error) {
@@ -55,12 +62,24 @@ const Signup = () => {
                 <Box mt={2}>
                     <TextField
                         label="Password"
-                        type="password"
+                        type={showPassword ? 'text' : 'password'}
                         variant="outlined"
                         fullWidth
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        edge="end"
+                                    >
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
                     />
                 </Box>
                 <Box mt={2}>
