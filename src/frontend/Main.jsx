@@ -11,6 +11,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import SearchBar from './Searchbar';
 import axios from 'axios';
 import './App.css';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 const modalStyle = {
     position: 'absolute',
@@ -32,6 +35,7 @@ const Main = ({ token }) => {
     const [likedNotes, setLikedNotes] = useState(new Set());
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
+    const [anchorEl, setAnchorEl] = useState(null);
 
     useEffect(() => {
         const fetchNotes = async () => {
@@ -157,6 +161,19 @@ const Main = ({ token }) => {
     //     setNotes(notes.map(note => note._id === id ? response.data : note));
     // };
 
+    const handleProfileClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleProfileClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleViewProfile = () => {
+        navigate('/profile'); // Add this route to your router
+        handleProfileClose();
+    };
+
     return (
         <Container maxWidth="md" className="app-container">
             <Box display="flex" justifyContent="space-between" alignItems="center" mt={4} mb={2}>
@@ -168,12 +185,22 @@ const Main = ({ token }) => {
                     <Button variant="contained" startIcon={<AddIcon />} onClick={handleOpen} sx={{ backgroundColor: 'rgb(255, 196, 10)', color: 'black', marginRight: 1 }}>
                         Create Note
                     </Button>
-                    <Button variant="contained" sx={{ backgroundColor: 'black' }} onClick={handleLogout}>Logout</Button>
+                    <Button variant="contained" sx={{ backgroundColor: 'black', marginRight: 1 }} onClick={handleLogout}>Logout</Button>
+                    <IconButton onClick={handleProfileClick}>
+                        <AccountCircleIcon sx={{ fontSize: 35 }} />
+                    </IconButton>
+                    <Menu
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={handleProfileClose}
+                    >
+                        <MenuItem onClick={handleViewProfile}>View Profile</MenuItem>
+                    </Menu>
                 </Box>
             </Box>
             <Divider />
             <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} /> {/* Integrate SearchBar here */}
-            {/* <List>
+            {/* <List>\
                 {filteredNotes.map(note => (
                     <ListItem key={note._id}>
                         <ListItemText primary={note.title} secondary={note.content} />

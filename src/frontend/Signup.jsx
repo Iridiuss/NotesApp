@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { toast } from 'react-toastify'; // Import toast
 import 'react-toastify/dist/ReactToastify.css';
+import logoImage from './l.png';
 
 const Signup = () => {
     const [username, setUsername] = useState('');
@@ -51,34 +52,50 @@ const Signup = () => {
 
     return (
         <Grid container sx={{ height: '100vh' }}>
-            {/* Left side - empty for now */}
-            <Grid item xs={12} md={8} sx={{ 
-                display: { xs: 'none', md: 'block' },  // Hide on mobile
-                backgroundColor: '#ffffff'  // White background
+            {/* Left side - with logo image */}
+            <Grid item xs={12} md={8} sx={{
+                display: { xs: 'none', md: 'block' },
+                backgroundColor: 'white',
+                position: 'relative',
+                height: '100%',  // Ensure the Grid takes full height
+                overflow: 'auto'  // Prevent any overflow
             }}>
-                {/* You can add content here later */}
+                <Box
+                    component="img"
+                    src={logoImage}
+                    alt="Logo"
+                    sx={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',  // Changed to 'cover' to fill the space completely
+                        position: 'absolute',  // Position absolutely within the container
+                        // top: 0,
+                        // left: 0
+                    }}
+                />
             </Grid>
 
             {/* Right side with the signup/login card */}
-            <Grid item xs={12} md={4} sx={{ 
-                display: 'flex', 
-                justifyContent: 'center', 
+            <Grid item xs={12} md={4} sx={{
+                display: 'flex',
+                justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: '#f5f5f5',  // Light grey background
+                backgroundColor: 'white',  // Light grey background
                 minHeight: '100vh'
             }}>
-                <Card sx={{ 
+                <Card sx={{
                     width: '100%',
                     maxWidth: '400px',
                     boxShadow: 3,
                     p: 2,
-                    m: 2
+                    m: 2,
+                    border: '1px solid grey' 
                 }}>
                     <CardContent>
                         <Typography component="h1" variant="h5" align="center" gutterBottom>
                             {isLogin ? 'Login' : 'Create Account'}
                         </Typography>
-                        
+
                         <Box component="form" onSubmit={handleSubmit}>
                             <Box mt={2}>
                                 <TextField

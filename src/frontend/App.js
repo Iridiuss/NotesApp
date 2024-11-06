@@ -4,6 +4,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Signup from './Signup';
 import Main from './Main'; // Import your Notes component
+// import Profile from './Profile';
+
+// Inside your router configuration
 
 const App = () => {
 return (
@@ -13,6 +16,7 @@ return (
                 <Route path="/" element={<Signup />} />
                 <Route path="/notes" element={<Main />} /> {/* Your Notes component */}
                 <Route path="/signup" element={<Signup/>} />
+                {/* <Route path="/profile" element={<Profile />} /> */}
             </Routes>
         </Router>
     );
