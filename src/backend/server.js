@@ -15,7 +15,7 @@ app.use(express.json())
 app.use('/api/auth', authRoutes);
 connectDB()
 
-app.use('/', userRoutes);  // Instead of app.use('/api/users', userRoutes)
+// app.use('/', userRoutes);  // Instead of app.use('/api/users', userRoutes)
 
 //routes
 app.get('/notes',async(req,res)=>{

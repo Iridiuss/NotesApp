@@ -16,7 +16,7 @@ return (
                 <Route path="/" element={<Signup />} />
                 <Route path="/notes" element={<Main />} /> {/* Your Notes component */}
                 <Route path="/signup" element={<Signup/>} />
-                {/* <Route path="/profile" element={<Profile />} /> */}
+                {/* <Route path="/profile" element={<Profile />} */}
             </Routes>
         </Router>
     );

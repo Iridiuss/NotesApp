@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'; // Import toast
 import 'react-toastify/dist/ReactToastify.css';
 import logoImage from './l.png';
 
+
 const Signup = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -51,26 +52,32 @@ const Signup = () => {
     };
 
     return (
-        <Grid container sx={{ height: '100vh' }}>
+        <Grid container sx={{
+            margin: '0',
+            padding: '0',
+            overflow: 'hidden'
+        }}>
             {/* Left side - with logo image */}
-            <Grid item xs={12} md={8} sx={{
+            <Grid item xs={12} md={8} 
+            sx={{
                 display: { xs: 'none', md: 'block' },
                 backgroundColor: 'white',
                 position: 'relative',
-                height: '100%',  // Ensure the Grid takes full height
-                overflow: 'auto'  // Prevent any overflow
-            }}>
+                height: '100vh',  // Ensure the Grid takes full height
+                overflow: 'hidden'  // Prevent any overflow
+            }}
+            >
                 <Box
                     component="img"
                     src={logoImage}
                     alt="Logo"
                     sx={{
-                        width: '100%',
+                        width: '95%',
                         height: '100%',
                         objectFit: 'cover',  // Changed to 'cover' to fill the space completely
                         position: 'absolute',  // Position absolutely within the container
-                        // top: 0,
-                        // left: 0
+                        top: 0,
+                        left: 0
                     }}
                 />
             </Grid>
@@ -89,7 +96,7 @@ const Signup = () => {
                     boxShadow: 3,
                     p: 2,
                     m: 2,
-                    border: '1px solid grey' 
+                    border: '1px solid grey'
                 }}>
                     <CardContent>
                         <Typography component="h1" variant="h5" align="center" gutterBottom>
